@@ -1,2 +1,2 @@
-# CQYTC_Vue
-CQYTC前端开发技术课程实验
+# CQYTI_Vue
+CQYTI前端开发技术课程实验
