@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验一</title>
+    <script type="application/javascript" src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="b">
+    <p>{{ mes }}</p>
+    <img v-bind:src="url">
+</div>
+
+</body>
+<script type="text/javascript">
+    var demo = new Vue({
+        el: '#b',
+        data: {
+            mes: 'Hello Vue',
+            url: 'mr.gif'
+        }
+    })
+</script>
+</html>

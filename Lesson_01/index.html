@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一个Vue实例</title>
+    <script type="application/javascript" src="js/vue.js"></script>
+</head>
+<body>
+<div id="a">
+    <h1>{{ message }}</h1>
+</div>
+</body>
+<script type="text/javascript">
+    var demo = new Vue({
+        el: '#a',
+        data: {
+            message: 'Hello Vue'
+        }
+    })
+</script>
+</html>
