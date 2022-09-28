@@ -1,0 +1,53 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-09-28 16:08:51
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-09-28 17:01:33
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P27上机指导2022231870</title>
+    <script type="application/javascript" src="./js/vue.js"></script>
+  </head>
+  <body>
+    <div id="box">{{nowDate | formatDate}}</div>
+  </body>
+  <script type="text/javascript">
+    var formatNum = function (num) {
+      return num < 10 ? '0' + num : num
+    }
+    var demo = new Vue({
+      el: '#box',
+      data: {
+        nowDate: new Date()
+      },
+      filters: {
+        formatDate: function (value) {
+          var year = value.getFullYear()
+          var month = formatNum(value.getMonth() + 1)
+          var date = formatNum(value.getDate())
+          var hour = formatNum(value.getHours())
+          var minute = formatNum(value.getMinutes())
+          var second = formatNum(value.getSeconds())
+          return year + '-' + month + '-' + date + '-' + hour + ':' + minute + ':' + second
+        }
+      },
+      mounted: function () {
+        var _this = this
+        var timer = setInterval(function () {
+          _this.nowDate = new Date()
+        }, 1000)
+      },
+      beforeDestroy: function () {
+        if (this.timer) {
+          clearInterval(this.timer)
+        }
+      }
+    })
+  </script>
+</html>
