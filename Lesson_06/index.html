@@ -1,0 +1,65 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-10-19 14:48:40
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-10-19 15:04:49
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="application/javascript" src="../Lesson_01/js/vue.js"></script>
+    <title>简易的登陆</title>
+  </head>
+  <body>
+    <div id="box" style="text-align: center">
+      <h1>{{title}}</h1>
+      <div v-if="noLogin">账号：<input type="text" v-model="userName" /></div>
+      <div v-if="noLogin">密码：<input type="password" v-model="password" /></div>
+      <div v-on:click="clickA" style="border-radius: 30px; width: 100px; margin: 20px auto; color: white; background-color: aqua">
+        {{buttonTitle}}
+      </div>
+    </div>
+    <script>
+      var demo = new Vue({
+        el: '#box',
+        data: {
+          noLogin: true,
+          userName: '',
+          password: '',
+          title: '欢迎您，请登录！',
+          buttonTitle: '登录'
+        },
+        methods: {
+          clickA: function () {
+            if (this.noLogin) {
+              this.login()
+            } else {
+              this.logout()
+            }
+          },
+          login: function () {
+            if (this.userName.length > 0 && this.password.length > 0) {
+              alert('username:' + this.userName + 'password:' + this.password)
+              this.noLogin = false
+              this.title = '欢迎你' + this.userName
+              this.buttonTitle = '注销'
+              this.userName = ''
+              this.password = ''
+            } else {
+              alert('请输入账号密码！')
+            }
+          },
+          logout: function () {
+            this.noLogin = true
+            this.title = '欢迎您！请登录'
+            this.buttonTitle = '登录'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
