@@ -1,0 +1,53 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-10-23 23:20:20
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-10-23 23:28:20
+ * @Description: 
+-->
+<head>
+  <meta charset="UTF-8" />
+  <title>实验4</title>
+  <script type="text/javascript" src="../Lesson_02/js/vue.js"></script>
+  <link rel="stylesheet" type="text/css" href="cs.css" />
+</head>
+<body>
+  <div id="box">
+    <div class="title">
+      <div class="col-1">序号</div>
+      <div class="col-1">省份</div>
+      <div class="col-1">省会</div>
+      <div class="col-2">旅游景点</div>
+    </div>
+    <div class="content" v-for="(tourist,index) in touristlist">
+      <div class="col-1">{{index +1}}</div>
+      <div class="col-1">{{tourist.province}}</div>
+      <div class="col-1">{{tourist.city}}</div>
+      <div class="col-2">{{tourist.spot}}</div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var demo = new Vue({
+      el: '#box',
+      data: {
+        touristlist: [
+          {
+            province: '黑龙江省',
+            city: '哈尔滨市',
+            spot: '太阳岛 圣索菲亚教堂 伏尔加庄园'
+          },
+          {
+            province: '吉林省',
+            city: '长春市',
+            spot: '净月潭 长城影视城 伪满皇宫'
+          },
+          {
+            province: '辽宁省',
+            city: '沈阳市',
+            spot: '沈阳故宫 沈阳北陵 张氏帅府'
+          }
+        ]
+      }
+    })
+  </script>
+</body>

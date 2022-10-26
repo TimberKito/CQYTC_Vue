@@ -1,0 +1,120 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-10-26 14:20:02
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-10-26 14:34:54
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="application/javascript" src="../Lesson_01/js/vue.js"></script>
+    <title>成绩表</title>
+  </head>
+  <body>
+    <div id="example">
+      <h2>成绩表</h2>
+      <label>姓名：</label><span>{{name}}</span> <label>性别：</label><span>{{sex}}</span> <label>年龄：</label><span>{{age}}</span>
+      <div class="report">
+        <div class="title">
+          <div>学期</div>
+          <div>数学</div>
+          <div>物理</div>
+          <div>化学</div>
+          <div>英语</div>
+          <div>计算机</div>
+          <div>总分</div>
+        </div>
+        <div class="content" v-for="(grade,index) in grades">
+          <div>{{grade.term}}</div>
+          <div v-for="score in grade.scores">
+            <div>{{score}}</div>
+          </div>
+          <div>{{total(index)}}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var exam = new Vue({
+      el: '#example',
+      data: {
+        name: '王麒皓',
+        sex: '男',
+        age: 20,
+        grades: [
+          {
+            term: '第一学期',
+            scores: {
+              math: 90,
+              physics: 85,
+              chemistry: 95,
+              english: 86,
+              computer: 96
+            }
+          },
+          {
+            term: '第二学期',
+            scores: {
+              math: 92,
+              physics: 83,
+              chemistry: 90,
+              english: 89,
+              computer: 95
+            }
+          }
+        ]
+      },
+      methods: {
+        total: function (index) {
+          var total = 0
+          var obj = this.grades[index].scores
+          for (var i in obj) {
+            total += obj[i]
+          }
+          return total
+        }
+      }
+    })
+  </script>
+  <style>
+    body {
+      text-align: center;
+      font-family: 微软雅黑;
+    }
+    label {
+      margin-left: 20px;
+    }
+    .report {
+      width: 560px;
+      margin: 30px auto;
+    }
+    .title {
+      background: #f6f6f6;
+      font-size: 18px;
+    }
+    .title,
+    .content {
+      width: 560px;
+      height: 36px;
+      line-height: 36px;
+      border: 1px solid #dddddd;
+    }
+    .title div {
+      width: 80px;
+      text-align: center;
+      float: left;
+    }
+    .content {
+      clear: both;
+    }
+    .content div {
+      width: 80px;
+      text-align: center;
+      float: left;
+    }
+  </style>
+</html>

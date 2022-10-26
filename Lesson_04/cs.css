@@ -1,0 +1,33 @@
+body {
+  font-family: 宋体;
+}
+.title {
+  background: #f6f6f6;
+  font-size: 18px;
+}
+.title,
+.content {
+  width: 510px;
+  height: 36px;
+  line-height: 36px;
+  border: 1px solid #dddddd;
+}
+.title div {
+  text-align: center;
+  float: left;
+}
+.title .col-1,
+.content .col-1 {
+  width: 80px;
+}
+.title .col-2,
+.content .col-2 {
+  width: 270px;
+}
+.content {
+  clear: both;
+}
+.content div {
+  text-align: center;
+  float: left;
+}
