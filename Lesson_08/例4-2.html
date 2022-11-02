@@ -1,0 +1,48 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-11-02 14:46:03
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-11-02 14:56:27
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="application/javascript" src="../Lesson_01/js/vue.js"></script>
+    <title>例子4-2</title>
+  </head>
+  <body>
+    <div id="example">
+      ￥:<input type="number" v-model="rmb" />
+      <p>$:<input type="number" v-model="dollar" /></p>
+
+      <p>{{rmb}}人民币={{dollar|formatNum}}美元</p>
+    </div>
+    <script type="text/javascript">
+      var exam = new Vue({
+        el: '#example',
+        data: {
+          rate: 6.8,
+          rmb: 0,
+          dollar: 0
+        },
+        watch: {
+          rmb: function (val) {
+            this.dollar = val / this.rate
+          },
+          dollar: function (val) {
+            this.rmb = val * this.rate
+          }
+        },
+        filters: {
+          formatNum: function (value) {
+            return value.toFixed(2)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
