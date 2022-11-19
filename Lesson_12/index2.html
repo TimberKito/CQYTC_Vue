@@ -1,0 +1,38 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-11-15 16:10:41
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-11-15 16:21:44
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>实验-11</title>
+    <script type="application/javascript" src="../Lesson_01/js/vue.js"></script>
+  </head>
+  <body>
+    <div id="example">
+      <img v-bind:src="url" v-on:mouseover="addBorder" v-on:mouseout="removeBorder" />
+    </div>
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#example',
+        data: {
+          url: './mr.gif'
+        },
+        methods: {
+          addBorder: function (e) {
+            e.target.style.border = '20px solid lightpink'
+          },
+          removeBorder: function (e) {
+            e.target.style.border = '0'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
