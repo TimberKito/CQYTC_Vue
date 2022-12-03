@@ -1,0 +1,40 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-12-03 14:55:14
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-12-03 14:55:26
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="application/javascript" src="../Lesson_01/js/vue.js"></script>
+    <title>实验16</title>
+  </head>
+  <body>
+    <div id="example">
+      边框宽度: <input type="text" v-model="border" />
+      <p>
+        <img src="../Lesson_13/img/mr.gif" width="200px" v-set-border="border" />
+      </p>
+    </div>
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#example',
+        data: {
+          border: ''
+        },
+        directives: {
+          setBorder: {
+            update: function (el, binding) {
+              el.border = binding.value
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-12-03 14:58:14
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-12-03 14:58:17
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="application/javascript" src="../Lesson_01/js/vue.js"></script>
+    <title>实验16</title>
+  </head>
+  <body>
+    <div id="example">
+      <label>选择文字大小:</label>
+      <select v-model="size">
+        <option value="20px">20px</option>
+        <option value="30px">30px</option>
+        <option value="40px">40px</option>
+        <option value="50px">50px</option>
+        <option value="60px">60px</option>
+      </select>
+      <p v-font-size="size">疫情退散</p>
+    </div>
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: '#example',
+        data: {
+          size: '20px'
+        },
+        directives: {
+          fontSize: function (el, binding) {
+            el.style.fontSize = binding.value
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

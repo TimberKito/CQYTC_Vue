@@ -1,0 +1,144 @@
+<!--
+ * @Author: Timber.Wang
+ * @Date: 2022-12-03 15:00:39
+ * @LastEditors: Timber.Wang
+ * @LastEditTime: 2022-12-03 15:00:41
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="application/javascript" src="../Lesson_01/js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box" style="text-align: center">
+      <div v-if="!guanli">
+        <h1>{{title}}</h1>
+        <div v-if="noLogin">账号:<input type="text" v-model="userName" /></div>
+        <div v-if="noLogin">密码:<input type="password" v-model="password" /></div>
+        <div v-on:click="click" style="border-radius: 30px; width: 100px; margin: 20px auto; color: white; background-color: blue">
+          {{buttonTitle}}
+        </div>
+        <div
+          v-on:click="register"
+          v-if="r"
+          style="border-radius: 30px; width: 100px; margin: 20px auto; color: white; background-color: blue"
+        >
+          {{registerTitle}}
+        </div>
+        <div
+          v-on:click="guanliyuan"
+          v-if="r"
+          style="border-radius: 30px; width: 100px; margin: 20px auto; color: white; background-color: blue"
+        >
+          {{guanliTitle}}
+        </div>
+      </div>
+      <div v-if="guanli">
+        <div class="title">
+          <div>姓名</div>
+          <div>密码</div>
+        </div>
+        <!--arrData=[{user:zyy,pswd:123}，{user:yr,pswd:123}]-->
+        <div class="content" v-for="(value,index) in arrData">
+          <div>{{value.user}}</div>
+          <div><input v-model="value.pswd" /></div>
+          <div v-on:click="uPswd(index,value)" style="color: white; background-color: blue">修改密码</div>
+          <div v-on:click="uDel(index)" style="color: white; background-color: blue">删除</div>
+        </div>
+        <div v-on:click="guanli=!guanli" style="border-radius: 30px; width: 100px; margin: 20px auto; color: white; background-color: blue">
+          退出
+        </div>
+      </div>
+    </div>
+    <script>
+      var demo = new Vue({
+        el: '#box',
+        data: {
+          noLogin: true,
+          guanli: false,
+          guanliTitle: '管理员登录',
+          admin: {
+            user: 'yrn',
+            pswd: 9426
+          },
+          r: true,
+          arrData: [], //所有注册的用户信息数组。每一个元素是一个用户信息。
+          //一个用户的信息包括用户名和密码
+          userName: '',
+          password: '',
+          title: '欢迎您，请登录',
+          buttonTitle: '登录',
+          registerTitle: '注册'
+        },
+        methods: {
+          uDel: function (i) {
+            this.arrData.splice(i, 1)
+          },
+          uPswd: function (i, value) {
+            this.arrData.splice(i, 1, { user: value.user, pswd: value.pswd })
+          },
+          guanliyuan: function () {
+            if (this.userName == this.admin.user && this.password == this.admin.pswd) {
+              this.guanli = true
+            } else {
+              alert('非管理员勿点')
+            }
+          },
+          register: function () {
+            if (this.userName == '' || this.password == '') {
+              alert('用户或密码缺失')
+              return
+            }
+            if (this.userName == this.admin.user) {
+              alert('管理员用户请登录')
+              return
+            }
+            var thisNo = this
+            for (var i = 0; i < thisNo.arrData.length; i++) {
+              if (thisNo.arrData[i].user == thisNo.userName) {
+                alert('用户已存在，请登录')
+                return
+              }
+            }
+            thisNo.arrData.push({ user: thisNo.userName, pswd: thisNo.password })
+            thisNo.password = ''
+            alert(thisNo.userName + '注册成功，请登录')
+          },
+          click: function () {
+            if (this.noLogin) {
+              this.login()
+            } else {
+              this.logout()
+            }
+          },
+          login: function () {
+            var thisNo = this
+            for (var i = 0; i < thisNo.arrData.length; i++) {
+              if (this.userName == thisNo.arrData[i].user && this.password == thisNo.arrData[i].pswd) {
+                this.noLogin = false
+                this.r = false
+                this.title = '欢迎你:' + this.userName
+                this.buttonTitle = '注销'
+                this.userName = ''
+                this.password = ''
+                return
+              }
+            }
+            alert('用户名或密码错误')
+          },
+          logout: function () {
+            this.noLogin = true
+            this.title = '欢迎您:未登录'
+            this.buttonTitle = '登录'
+            this.r = true
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
